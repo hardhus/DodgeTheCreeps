@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdwmhfcv7w0w7"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_c44a2"]
+[ext_resource type="FontFile" uid="uid://2nxt6gbik5op" path="res://fonts/Nunito-Regular.ttf" id="1_j21eu"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_gb5lf"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_3lfna"]
+events = [SubResource("InputEventAction_gb5lf")]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_c44a2")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 91.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_j21eu")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -140.0
+offset_right = 75.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_j21eu")
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_3lfna")
+text = "Start"
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -92.5
+offset_right = 151.0
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_j21eu")
+theme_override_font_sizes/font_size = 64
+text = "Dodge the 
+creeps!"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="MessageTimer" type="Timer" parent="."]
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://33ti5tn6kg74"]
+
+[ext_resource type="Script" path="res://mob.gd" id="1_ex5tk"]
+[ext_resource type="Texture2D" uid="uid://f4gnagh2n58q" path="res://art/enemyFlyingAlt_1.png" id="1_uduya"]
+[ext_resource type="Texture2D" uid="uid://bwe6xifywk2oa" path="res://art/enemyFlyingAlt_2.png" id="2_0v5ld"]
+[ext_resource type="Texture2D" uid="uid://ca5uol68s4swe" path="res://art/enemySwimming_1.png" id="3_liows"]
+[ext_resource type="Texture2D" uid="uid://dqnodp3exibgw" path="res://art/enemySwimming_2.png" id="4_iaqfj"]
+[ext_resource type="Texture2D" uid="uid://c37uc3v4u5sa2" path="res://art/enemyWalking_1.png" id="5_qci5m"]
+[ext_resource type="Texture2D" uid="uid://7li16avqafqc" path="res://art/enemyWalking_2.png" id="6_efxuw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ifso4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uduya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0v5ld")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_liows")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_iaqfj")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qci5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_efxuw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i5sk3"]
+radius = 36.0
+height = 100.0
+
+[node name="Mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_ex5tk")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["mobs"]]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_ifso4")
+animation = &"swim"
+frame_progress = 0.509081
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_i5sk3")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
